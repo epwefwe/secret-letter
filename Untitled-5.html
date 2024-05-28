@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lullabies&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f8a9e7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihYHw5MFzbSi6CtNj4DfqchUCqCcG8Za5ARNtM-oKcE3zhqkW7tHG25P8M9AY64No3vzGgamBPo34XOve147UY8ckbuiJ9OOmBI=w2560-h1237');
+            background-size: cover;
+            background-position: center;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            text-align: center;
+            max-width: 500px;
+            margin: 20px;
+            backdrop-filter: blur(10px);
+            transform: translateY(-100vh);
+            transition: transform 1s ease-in-out;
+            overflow: hidden;
+            position: relative; /* to ensure z-index works */
+            z-index: 2; /* to keep the card above the gifs */
+        }
+        .card.show {
+            transform: translateY(0);
+        }
+        .card h1 {
+            color: #070707;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-family: 'Lullabies', cursive;
+        }
+        .card p {
+            color: #333;
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .slider {
+            position: relative;
+            width: 80%;
+            max-width: 300px;
+            margin: 20px auto;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slides img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .controls button {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: #fff;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .controls button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .letter {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 2px solid #b864bc;
+            border-radius: 10px;
+            text-align: left;
+            font-style: italic;
+            margin-top: 20px; /* Sesuaikan margin atas sesuai kebutuhan */
+            display: none;
+            position: relative; /* Tambahkan posisi relatif */
+            z-index: 1; 
+            max-height: 450px; /* Batasi tinggi surat agar tidak melebihi tinggi layar */
+            overflow-y: auto; 
+        }
+        .toggle-button {
+            background-color: #b55490;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+        }
+        .toggle-button:hover {
+            background-color: #fdace9;
+        }
+        .gif-container {
+            position: absolute;
+            bottom: 155px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            z-index: 0; /* to ensure the gifs are behind the card */
+        }
+        .gif-left {
+            margin-left: 80px; /* Geser GIF kiri lebih ke kanan */
+            width: 350px;
+            height: 350px;
+        }
+        .gif-right {
+            margin-right: 85px; /* Geser GIF kanan lebih ke kiri */
+            width: 350px;
+            height: auto;
+        }
+        .gif-top {
+            /* Menetapkan posisi gambar GIF di atas card */
+            position: absolute;
+            top: 10px; /* Menyesuaikan jarak antara gambar GIF dan card */
+            left: 50%;
+            transform: translateX(-50%);
+            /* Mengatur lebar gambar GIF agar sesuai dengan card */
+            max-width: 25%; /* Menyesuaikan lebar sesuai kebutuhan */
+            height: auto;
+            z-index: 0; /* Memastikan gambar GIF di atas card */
+        }
+        @media screen and (max-width: 768px) {
+        .gif-top {
+            max-width: 35%; /* Mengurangi ukuran gambar GIF pada layar yang lebih kecil */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="gif-container">
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHYyenFjbTBwbmJpY2tyNjQydjk5ZjVtOHlsNzhxMjd1dHV5N2N1MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/4OPWdAK1jlLktpZ4WY/giphy.gif" alt="Gif Left" class="gif gif-left">
+            <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExczEwa2J5YmExaXU5YXVpN3B5dXZtemhlN21sdnNhaDZ5ZjJjb3pqYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/uQ08qiJtbYmjeHVxhC/giphy.gif" alt="Gif Right" class="gif gif-right">
+        </div>
+        <div class="card" id="card">
+            <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWUyaDlkZ2kyNGxnZzEzN3U3ZTF0YzF4OW8xZHN3cWljOXgzZ3lzOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/EoffCuWGUjnCq9uLId/giphy.gif" alt="Kue Ultah" class="gif-top">
+            <div class="card" id="card"></div>
+            <h1>HAPPY BIRTHDAY MIMGSELL!!</h1>
+            <p>Demon Lort Van Mimgsel Gogh Ramsay Tempest </p>
+            <P>yang ke-02 ♡♡</P>
+            <div class="slider">
+                <div class="slides">
+                    <img src="https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihadMDj1yjx-TkxAq9Rb4cuigJajc6oKKIk3_1LDck5Kmv6it2YcMqbwAgvSXxEvFA3GdG9STjui6jeToLD2tonc76BDcyaZgA=w2560-h1237-rw-v1" alt="Deskripsi Gambar 1">
+                    <img src="https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihakmCC872qrIBtAvytzVSGYblQUoCL-b1fz52HBPRGp4wyOt9WCXNVFSJBkPXoWFwdP4fyfoywmFLMBzOtpTPigVmQOxEUBX3I=w2560-h1237-rw-v1" alt="Deskripsi Gambar 2">
+                    <img src="https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihYNioBibmYGcopCzLjyh38IJr2czXtBlhpwyrzVoEvYZVb6dJUjV83OWcOxVwM9UX6_9fnZ3Swyq6CyNjCwkL80t4MbzK_KHTU=w2560-h1237-rw-v1" alt="Deskripsi Gambar 3">
+                </div>
+                <div class="controls">
+                    <button onclick="prevSlide()">&#10094;</button>
+                    <button onclick="nextSlide()">&#10095;</button>
+                </div>
+            </div>
+            <button id="btn" class="toggle-button" onclick="toggleLetter()">HIT ME!!</button>
+            <audio id="birthdayAudio" src="birthday-Audio.mp3" preload="auto" loop></audio>
+            <script type="module" src="confetti.js"></script>
+            <div class="letter">
+                <p>Teruntuk Michelle Sayangku,</p>
+                <p>Selamat Ulang Tahun Michelle, sayangku cintaku manisku cantikku pacar ak yang paling keren sduniakkk.. hari ini, tgl ini, kmu lahir di duniak yg kejam ini sambil ue ue, dan kmu sudah bertahan hingga sekarang!!! omaygat, u did well michelle:D.</p>
+                <p>Michelle, aku selalu berdoa yang terbaik untuk kamu. Semoga dengan bertambahnya umur kamu michelle, kamu menjadi pribadi yang lebih baik, dilancarkan rezekinya, dipermudah urusannya, dan tambah camgtipp, tambah timggikk, smua yang kamu inginkan akan terkabulkann.. Amiinnn.. :> </p>
+                <p>dari Cowok kmu,</p>
+                <p>pawdil.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const card = document.getElementById('card');
+            setTimeout(() => {
+                card.classList.add('show');
+            }, 500); // delay to show the card after page load
+        });
+
+        let currentSlide = 0;
+        const slides = document.querySelector('.slides');
+        const totalSlides = document.querySelectorAll('.slides img').length;
+        
+        function updateSlide() {
+            const slideWidth = document.querySelector('.slider').clientWidth;
+            slides.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlide();
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlide();
+        }
+        
+        function toggleLetter() {
+            const letter = document.querySelector('.letter');
+            if (letter.style.display === 'none' || letter.style.display === '') {
+                letter.style.display = 'block';
+                playBirthdayAudio(); // Memanggil fungsi untuk memainkan audio
+            } else {
+                letter.style.display = 'none';
+            }
+        }
+
+        function playBirthdayAudio() {
+            const audio = document.getElementById('birthdayAudio');
+            audio.play();
+        }
+    </script>
+</body>
+</html>
+
